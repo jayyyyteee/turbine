@@ -1,0 +1,39 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ post.title }}
+{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" type="text/css" href="{% static "blog/index.css" %}">
+{% endblock %}
+
+{% block content %}
+ <div class = "head text-center">
+      
+    <h1>TrekBytes</h1>
+
+
+  </div>
+    <section class="container mt-5">
+        <h2 class="mb-4">{{ post.title }}</h2>
+        <div class="mb-4">
+            {% for tag in post_tags %}
+                <span class="badge bg-primary">{{ tag.caption }}</span>
+            {% endfor %}
+        </div>
+        <article>
+            <img src="{{ post.image.url }}" class="img-fluid mb-4" alt="{{ post.title }}">
+            <address class="mb-3"><a href="mailto:{{ post.author.email_address }}">{{ post.author }}</a></address>
+            <div class="text-muted">
+                Last updated on <time>{{ post.date|date:'SHORT_DATE_FORMAT' }}</time>
+            </div>
+        </article>
+    </section>
+
+    <main class="container mt-4">
+        {{ post.content|safe }}
+    </main>
+{% endblock %}

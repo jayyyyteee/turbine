@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Seen From Above
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" type="text/css" href="{% static "blog/index.css" %}">
+{% endblock %}
+
+{% block content %}
+<div class = "head text-center">
+      
+    <h1>TrekBytes</h1>
+
+
+  </div>
+<section class="all-posts" id="allposts">
+    <div class="container w-50">
+        {% for post in all_posts %}
+        {% include "blog/includes/post.html" %}
+        {% endfor %}
+        
+    </div>
+</section>
+{% endblock %}

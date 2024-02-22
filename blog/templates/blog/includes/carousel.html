@@ -1,0 +1,15 @@
+
+{% load static %}
+<a href="{% url 'post-detail' slug=post.slug %}">
+    <div class="card mx-auto text-center">
+        <img src="{{ post.image.url }}" class="card-img-top" alt="Image 1 Description">
+        <div class="card-body"></div>
+        <div class="card-img-overlay align-bottom">
+            <h7 class="postdate">{{ post.date}}</h7>
+            <br>
+            <h7 class="posttitle">{{ post.title }}</h7>
+        
+            
+        </div>
+    </div>
+</a>

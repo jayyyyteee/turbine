@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+TrekBytes
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" type="text/css" href="{% static "blog/index.css" %}">
+
+{% endblock %}
+{% block starting_page_header %}
+<!-- <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner" data-bs-interval="20000">
+    {% for post in posts %}
+        {% if forloop.first %}
+            <div class="carousel-item active">
+        {% else %}
+            <div class="carousel-item">
+        {% endif %}
+        {% include "blog/includes/carousel.html" %}
+        </div>
+    {% endfor %}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div> -->
+
+<header>
+  <div class="headerintro">
+      <img class = "img-fluid w-100 mt-0" src="{% static 'blog/images/header-background.png' %}" alt="">
+      <div id="carouselExampleInterval" class="carousel slide mx-auto" data-bs-ride="carousel">
+        <div class="carousel-inner" data-bs-interval="20000">
+          {% for post in posts %}
+              {% if forloop.first %}
+                  <div class="carousel-item active">
+              {% else %}
+                  <div class="carousel-item">
+              {% endif %}
+              {% include "blog/includes/carousel.html" %}
+              </div>
+          {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <div class = "head text-center">
+      
+        <h1>TrekBytes</h1>
+
+
+      </div>
+      
+  </div>
+</header>
+{% endblock %}
+{% block content %}
+
+<!-- Masthead-->
+
+<!-- About-->
+<section class="about-section text-center" id="about" style="position: relative;">
+    <div class="container px-4 px-lg-5" style="padding-bottom: 5rem;">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            
+            
+                <!-- <h2 class="text-white mb-4">Lorem Ipsum</h2>
+                <p class="text-white-50">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque illo deleniti necessitatibus ea illum quas tempora nam quo, veniam, quasi beatae officiis doloribus ullam, quam totam. Eaque ducimus quaerat aspernatur?
+                </p> -->
+                <div id="map" style="height: 30rem; width: 60rem; padding-bottom: 10px; border-radius: 25px;"></div>
+                <script>
+                    function initMap() {
+                      const map = new google.maps.Map(document.getElementById('map'), {
+                        center: { lat: 0, lng: 0 }, // Set the initial center of the map
+                        zoom: 3, // Adjust the initial zoom level as needed
+                      });
+                  
+                      const travelCoordinates = [
+                        { lat: 34.0522, lng: -118.2437 }, // Example: Los Angeles
+                        { lat: 4.624335, lng: -74.063644}, //Bogota
+                        { lat: 6.230833, lng: -75.590553}, //Medellin
+                        { lat: -0.777259, lng:-91.142578}, //Galapagos Islands
+                        { lat: -0.180653, lng:-78.467834}, //Quito
+                        { lat: -12.046374, lng:-77.042793}, //Lima
+                        { lat: -33.447487, lng:-70.673676},
+                        // Add more coordinates for your travel routes here
+                      ];
+                  
+                      const travelPath = new google.maps.Polyline({
+                        path: travelCoordinates,
+                        geodesic: true,
+                        strokeColor: '#FF0000', // Change the color as desired
+                        strokeOpacity: 1.0,
+                        strokeWeight: 2, // Adjust the thickness of the route line
+                      });
+                  
+                      travelPath.setMap(map);
+                  
+                      const bounds = new google.maps.LatLngBounds();
+                      for (const coord of travelCoordinates) {
+                        bounds.extend(coord);
+                        // Add a marker at each coordinate
+                        new google.maps.Marker({
+                          position: coord,
+                          map: map,
+                          title: 'Visited place', // You can set custom titles
+                          icon: {
+                            path: google.maps.SymbolPath.STAR, // Use a star symbol
+                            scale: 5, // Adjust the size of the star
+                            fillColor: 'yellow', // Set the color of the star
+                            strokeColor: 'gold', // Set the outline color of the star
+                            strokeWeight: 2 // Set the outline weight of the star
+                          }
+                        });
+                      }
+                      
+                      map.fitBounds(bounds);
+                    }
+                  </script>
+                  
+                  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBop6l15og1-6XxAc6AWHsKxoLgQ6rKyPE&callback=initMap" async defer></script>
+                  
+            
+        </div>
+        
+    </div>
+</section>
+
+<!-- Projects-->
+
+{% endblock %}
